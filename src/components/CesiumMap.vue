@@ -6,27 +6,6 @@
 import { ref, defineComponent, onMounted } from "vue";
 import * as Cesium from "cesium";
 
-const osmBuildingsTileset = Cesium.createOsmBuildings();
-
-osmBuildingsTileset.style = new Cesium.Cesium3DTileStyle({
-  defines: {
-    distanceFromComplex:
-        "distance(vec2(${feature['cesium#longitude']}, ${feature['cesium#latitude']}), vec2(144.96007, -37.82249))",
-  },
-  color: {
-    conditions: [
-      ["${distanceFromComplex} > 0.010", "color('#d65c5c')"],
-      ["${distanceFromComplex} > 0.006", "color('#f58971')"],
-      ["${distanceFromComplex} > 0.002", "color('#f5af71')"],
-      ["${distanceFromComplex} > 0.0001", "color('#f5ec71')"],
-      ["true", "color('#ffffff')"],
-    ],
-  },
-});
-
-
-
-
 export default defineComponent({
   name: "CesiumMap",
   props: {
