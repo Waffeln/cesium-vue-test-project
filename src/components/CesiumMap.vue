@@ -29,10 +29,10 @@ export default defineComponent({
 
       viewer.scene.primitives.add(tileset)
       viewer.camera.flyTo({
-        destination : Cesium.Cartesian3.fromDegrees( 13.404954, 52.520008, 600),
+        destination : Cesium.Cartesian3.fromDegrees( 13.404954, 52.520008, 200),
         orientation : {
           heading : Cesium.Math.toRadians(0.0),
-          pitch : Cesium.Math.toRadians(-12.0),
+          pitch : Cesium.Math.toRadians(-40.0),
         }
       })
       mapRef.value
@@ -44,7 +44,7 @@ export default defineComponent({
 
 <style scoped>
 #cesiumContainer {
-  width: 800px;
+  width: 80%;
   right: 0;
   position: absolute
 }
