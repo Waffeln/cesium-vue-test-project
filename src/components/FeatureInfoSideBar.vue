@@ -1,7 +1,7 @@
 <template>
   <div class="SideBar">
-    <div v-for="el in Object.keys(this.dataRef.value)">
-      {{el}}: {{this.dataRef.value[el]}}
+    <div v-for="[el, value] in Object.entries(dataRef.value)">
+      {{el}}: {{value}}
     </div>
   </div>
 </template>
@@ -9,6 +9,10 @@
 <script lang="ts">
 import * as Cesium from "cesium";
 import {defineComponent, ref} from "vue";
+
+interface DataRefType {
+  value: any
+}
 
 export default defineComponent({
   name: "FeatureInfoSideBar",
@@ -27,7 +31,7 @@ export default defineComponent({
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
   },
   setup: function(props) {
-    const dataRef = ref({value: ""});
+    const dataRef:DataRefType = ref({value: ""});
     const viewRef = ref(props.viewer)
     return {dataRef, viewRef}
   },

@@ -1,5 +1,5 @@
 <template>
-  <FeatureInfoSideBar :viewer="this.viewerRef" />
+  <FeatureInfoSideBar :viewer="viewerRef" />
 </template>
 
 <script lang="ts">
@@ -38,6 +38,7 @@ export default defineComponent({
         url: props.terrainUrl
       })
     });
+    console.log(typeof viewer)
 
     viewer.scene.primitives.add(tileset);
     viewer.camera.flyTo({
