@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import * as Cesium from "cesium";
-import {defineComponent, ref} from "vue";
+import {defineComponent, ref, UnwrapRef} from "vue";
 
 interface DataRefType {
   value: any
@@ -17,14 +17,15 @@ interface DataRefType {
 export default defineComponent({
   name: "FeatureInfoSideBar",
   props: {
-    viewer:<any> {
-      default: undefined
+    viewer: {
+      type: Object as () => UnwrapRef<Cesium.Viewer>
     }
   },
   mounted: function() {
-    const handler = new Cesium.ScreenSpaceEventHandler(this.viewRef.scene.canvas)
-    handler.setInputAction((e: any)=> {
-      const feature = this.viewRef.scene.pick(e.position);
+    const handler = new Cesium.ScreenSpaceEventHandler(this.viewRef?.scene.canvas)
+    handler.setInputAction((e: Cesium.ScreenSpaceEventHandler.PositionedEvent)=> {
+      console.log(this.viewRef?.selectedEntity?.name)
+      const feature = this.viewRef?.scene.pick(e.position);
       if (feature instanceof Cesium.Cesium3DTileFeature) {
         this.dataRef.value = feature.getProperty("attributes")
       }
@@ -32,7 +33,7 @@ export default defineComponent({
   },
   setup: function(props) {
     const dataRef:DataRefType = ref({value: ""});
-    const viewRef = ref(props.viewer)
+    const viewRef = ref(props.viewer as UnwrapRef<Cesium.Viewer>)
     return {dataRef, viewRef}
   },
 });
