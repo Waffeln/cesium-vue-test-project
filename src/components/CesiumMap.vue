@@ -1,10 +1,11 @@
 <template>
-  <div class="cesium-container" id="cesiumContainer" ref="mapRef" />
+  <FeatureInfoSideBar :viewer="this.viewerRef" />
 </template>
 
 <script lang="ts">
 import { ref, defineComponent } from "vue";
 import * as Cesium from "cesium";
+import FeatureInfoSideBar from "./FeatureInfoSideBar.vue";
 
 export default defineComponent({
   name: "CesiumMap",
@@ -16,8 +17,11 @@ export default defineComponent({
       default: "https://www.virtualcitymap.de/datasource-data/f892f6af-180a-4eef-917f-5ff03c260b32/tileset.json"
     }
   },
-  setup: (props) => {
-    const mapRef = ref<HTMLDivElement | null>(null);
+  components: {
+    FeatureInfoSideBar
+  },
+  setup: function(props) {
+
     const tileset = new Cesium.Cesium3DTileset({
       url: props.tilesetUrl,
     });
