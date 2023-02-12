@@ -21,6 +21,13 @@ export default defineComponent({
     const tileset = new Cesium.Cesium3DTileset({
       url: props.tilesetUrl,
     });
+    tileset.style = new Cesium.Cesium3DTileStyle({
+      color: {
+        conditions : [
+          ['true', 'color("green")']
+        ]
+      }
+    })
 
     const viewer = new Cesium.Viewer("cesiumContainer", {
       terrainProvider: new Cesium.CesiumTerrainProvider({
