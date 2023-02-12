@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, onMounted } from "vue";
+import { ref, defineComponent } from "vue";
 import * as Cesium from "cesium";
 
 export default defineComponent({
@@ -22,30 +22,27 @@ export default defineComponent({
       url: props.tilesetUrl,
     });
 
-    onMounted(() => {
-      const viewer = new Cesium.Viewer("cesiumContainer", {
-        terrainProvider: new Cesium.CesiumTerrainProvider({url: props.terrainUrl,}),
-      });
-
-      viewer.scene.primitives.add(tileset)
-      viewer.camera.flyTo({
-        destination : Cesium.Cartesian3.fromDegrees( 13.404954, 52.520008, 200),
-        orientation : {
-          heading : Cesium.Math.toRadians(0.0),
-          pitch : Cesium.Math.toRadians(-40.0),
-        }
+    const viewer = new Cesium.Viewer("cesiumContainer", {
+      terrainProvider: new Cesium.CesiumTerrainProvider({
+        url: props.terrainUrl
       })
-      mapRef.value
     });
-    return { mapRef };
+
+    viewer.scene.primitives.add(tileset);
+    viewer.camera.flyTo({
+      destination : Cesium.Cartesian3.fromDegrees( 13.404954, 52.520008, 200),
+      orientation : {
+        heading : Cesium.Math.toRadians(0.0),
+        pitch : Cesium.Math.toRadians(-40.0),
+      }
+    })
+
+    const viewerRef = ref(viewer);
+
+    return {viewerRef}
   },
 });
 </script>
 
 <style scoped>
-#cesiumContainer {
-  width: 80%;
-  right: 0;
-  position: absolute
-}
 </style>
