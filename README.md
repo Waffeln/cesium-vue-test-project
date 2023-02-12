@@ -1,27 +1,40 @@
-# Vue 3 + Typescript + Vite
+# A Cesium Vue Test Project
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+### Install Dependencies
+`yarn install`
 
-## Recommended IDE Setup
+### Start project in dev enviroment
+`yarn dev`
 
-[VSCode](https://code.visualstudio.com/) + [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur). Make sure to enable `vetur.experimental.templateInterpolationService` in settings!
+### Build Project
+`yarn build`
 
-### If Using `<script setup>`
 
-[`<script setup>`](https://github.com/vuejs/rfcs/pull/227) is a feature that is currently in RFC stage. To get proper IDE support for the syntax, use [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) instead of Vetur (and disable Vetur).
+## This is a Coding Challenge by the following description
 
-## Type Support For `.vue` Imports in TS
+A website should be created showing a 3D Map on the right side and an information section on the
+left side.\
+3D Map:\
+Technology: CesiumJS -- https://cesium.com/learn/cesiumjs-learn/ \
+The map should show the following datasets:
+- Berlin buildings: Tileset:\
+  https://www.virtualcitymap.de/datasource-data/f892f6af-180a-4eef-917f-5ff03c260b32/tileset.json 
+- Germany terrain: CesiumTerrainProvider:\
+  https://www.virtualcitymap.de/datasource-data/globalterrain_5_9 
+  
+Both datasets can be used with Cesiumjs.
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can use the following:
+Information section:\
+- Technology: VueJS\
+- The information section should show object related information. On a click at a 3d
+object/building in the 3D Map the attributes of the building should be shown.
+  - To do this its
+  required to listen to a click event in the CesiumJS 3D Map.\
+  In the Berlin buildings dataset, the data to be shown is encoded in the “attributes” Attribute.
+- Further Requirements:
+- Git should be used.
+- The Project should be an NPM Package, inclusive buildtools to build the webpage.
 
-### If Using Volar
-
-Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
-
-### If Using Vetur
-
-1. Install and add `@vuedx/typescript-plugin-vue` to the [plugins section](https://www.typescriptlang.org/tsconfig#plugins) in `tsconfig.json`
-2. Delete `src/shims-vue.d.ts` as it is no longer needed to provide module info to Typescript
-3. Open `src/main.ts` in VSCode
-4. Open the VSCode command palette
-5. Search and run "Select TypeScript version" -> "Use workspace version"
+To submit:\
+The code should be hosted on a free git hosting application or can be provided as a zip file
+which includes the git repository.
